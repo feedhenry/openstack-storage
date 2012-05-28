@@ -1,0 +1,21 @@
+{
+  "author": "Martin Murphy <martin.murphy@feedhenry.com>",
+  "name": "openstack-swift",
+  "description": "Openstack Object Store (Swift) client",
+  "version": "0.1.0-BUILD-NUMBER",
+  "repository": {
+    "url": ""
+  },
+  "dependencies": {
+    "optimist": "*",
+    "winston": "*",
+    "dateformat": "*",
+    "async": "0.1.18",
+    "request": "2.9.202"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}

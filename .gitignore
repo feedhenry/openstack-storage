@@ -1,0 +1,10 @@
+lib-cov/
+dist/
+output/
+man/
+test/log/
+*~
+.project
+.settings/
+node_modules/
+.DS_Store
