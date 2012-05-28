@@ -3,7 +3,8 @@
     "passwordCredentials": {
       "username": "user1234",
       "password":"secretpassword"
-    }
+    },
+    "tenantId": "your tennant id"
   },
   "host": "http://192.168.28.52:5000",
   "storageName": "swift-service"
