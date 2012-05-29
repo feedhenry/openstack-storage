@@ -8,3 +8,8 @@ test/log/
 .settings/
 node_modules/
 .DS_Store
+test.png
+config/stg*
+config/hp*
+config/rack*
+config/local*
