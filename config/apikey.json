@@ -1,0 +1,11 @@
+{
+  "auth": {
+    "apiAccessKeyCredentials": {
+      "accessKey": "YOUR API ACCESS KEY",
+      "secretKey": "YOUR SECRET KEY"
+    },
+    "tenantId": "YOUR TENANT ID"
+  },
+  "host": "YOUR IDENTITY SERVER URL",
+  "storageName": "THE NAME OF YOUR STORAGE SERVICE IN THE SERVICE CATALOG"
+}

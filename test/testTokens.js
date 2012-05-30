@@ -1,36 +1,28 @@
-// Arguments parser
-var args = require('optimist').argv;
+var path = require('path');
+var assert = require('assert');
+var authenticate = require('../lib/authenticate');
 
-// Logger Library
-var winston = require('winston');
+suite('authenticate', function(){
+  var configFile;
+  var config;
 
-var dateFormat = require('dateformat');
+  setup(function(){
+    configFile = path.join(__dirname,'../config/testconfig.json');
+    config = require(configFile);
+  });
 
-// Usage
-function usage() {
-  console.error("Usage: " + args.$0 + " <config file>");
-  process.exit(0);
-}
-
-if(args.h) {
-  usage();
-}
-
-if(args._.length != 1) {
-  usage(); 
-}
-
-var configFile = args._[0];
-var config = require(configFile);
-
-var authenticate = require('authenticate');
-
-var res = authenticate.getTokens(config, function (err, res, tokens) {
-  console.log("err: ", err);
-//  console.log("res: ", res);
-  console.log("tokens: ", tokens);
+  suite('getTokens', function(){
+    test('happy test', function(done){
+      var res = authenticate.getTokens(config, function (err, res, tokens) {
+        assert(!err, "Error from getToken: " + (err?err.toString():""));
+        assert(tokens, "Invalid response from authentication");
+        assert(tokens.id && (tokens.id.length > 0), "id should be a string");
+        assert(tokens.expires && (tokens.expires.length > 0), "invalid expiry time returned");
+        assert(tokens.storageUrl && (tokens.storageUrl.length > 0), "storageURL not returned");
+        done();
+      });
+    });
+  });
 });
-
-
 
 
