@@ -1,10 +1,13 @@
 {
   "author": "Martin Murphy <martin.murphy@feedhenry.com>",
   "name": "openstack-storage",
-  "description": "Openstack Object Store (Swift) client",
+  "description": "Openstack Storage (Swift) client for node.js",
+  "keywords": ["openstack", "storage", "client", "javascript"],
   "version": "0.1.0-BUILD-NUMBER",
+  "homepage": "https://github.com/feedhenry/openstack-storage",
   "repository": {
-    "url": ""
+    "type": "git"
+    "url": "git://github.com/feedhenry/openstack-storage.git"
   },
   "dependencies": {
     "optimist": "*",
