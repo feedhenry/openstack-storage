@@ -1,9 +1,13 @@
 var path = require('path');
 var assert = require('assert');
 var async = require('async');
+var fs = require('fs');
 
 var authenticate = require('../lib/authenticate');
 var storage = require('../lib/storage');
+
+var testLocalFile = '/tmp/test.txt';
+var testRemoteFileName = 'file1.txt';
 
 suite('StorageTests', function(){
   var configFile;
@@ -12,17 +16,26 @@ suite('StorageTests', function(){
 
   setup(function(done){
     configFile = path.join(__dirname,'../config/testconfig.json');
-    path.exists(configFile, function (configPresent) {
-      var err;
-      if (configPresent) {
-        config = require(configFile);
-        authFn = async.apply(authenticate.getTokens, config);
-      } else {
-        err = new Error('config file: ' + configFile + ' not found. Did you create one based on the sample provided?');
+    async.series([
+      function (cb) {
+        path.exists(configFile, function (configPresent) {
+          var err;
+          if (configPresent) {
+            config = require(configFile);
+            authFn = async.apply(authenticate.getTokens, config);
+          } else {
+            err = new Error('config file: ' + configFile + ' not found. Did you create one based on the sample provided?');
+          }
+          cb(err);
+        });
+      },
+      function (cb) {
+        fs.writeFile(testFileName, 'This is test data\nLine 2 of test data\n', cb);
       }
+    ], function (err) {
       done(err);
-    });        
-  });
+    });
+  });        
 
   suite('Create Container, then file, then delete both', function(){
     test('happy test', function(done){
@@ -39,23 +52,23 @@ suite('StorageTests', function(){
               storageSwift.createContainer(containerName, function (err, statusCode) {
                 assert(!err, "error creating container");
                 assert(statusCode, "no statusCode");
-                assert((statusCode>=200) && (statusCode<300), "non successful statusCode: " + statusCode);
+                assert((statusCode >= 200) && (statusCode < 300), "non successful statusCode: " + statusCode);
                 cb(err, containerName);
               });
             },
             function(containerName, cb) {
-              storageSwift.addFile(containerName, {remoteName:'file1.png', localFile:'./test.png'}, function(err, statusCode) {
+              storageSwift.addFile(containerName, {remoteName: testRemoteFileName, localFile: testLocalFile}, function(err, statusCode) {
                 assert(!err, "error sending file");
                 assert(statusCode, "no statusCode");
-                assert((statusCode>=200) && (statusCode<300), "non successful statusCode: " + statusCode);
+                assert((statusCode >= 200) && (statusCode < 300), "non successful statusCode: " + statusCode);
                 cb(err, containerName);
               });
             },
             function(containerName, cb) {
-              storageSwift.deleteFile(containerName, 'file1.png', function (err, statusCode) {
+              storageSwift.deleteFile(containerName, testRemoteFileName, function (err, statusCode) {
                 assert(!err, "error deleting file");
                 assert(statusCode, "no statusCode");
-                assert((statusCode>=200) && (statusCode<300), "non successful statusCode: " + statusCode);
+                assert((statusCode >= 200) && (statusCode < 300), "non successful statusCode: " + statusCode);
                 cb(err, containerName);
               });
             },
@@ -63,7 +76,7 @@ suite('StorageTests', function(){
               storageSwift.deleteContainer(containerName, function (err, statusCode) {
                 assert(!err, "error deleting container");
                 assert(statusCode, "no statusCode");
-                assert((statusCode>=200) && (statusCode<300), "non successful statusCode: " + statusCode);
+                assert((statusCode >= 200) && (statusCode < 300), "non successful statusCode: " + statusCode);
                 cb(err, containerName);
               });
             }
