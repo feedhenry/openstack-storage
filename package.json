@@ -6,7 +6,7 @@
   "version": "0.1.0-BUILD-NUMBER",
   "homepage": "https://github.com/feedhenry/openstack-storage",
   "repository": {
-    "type": "git"
+    "type": "git",
     "url": "git://github.com/feedhenry/openstack-storage.git"
   },
   "dependencies": {
