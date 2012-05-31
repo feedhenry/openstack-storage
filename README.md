@@ -1,5 +1,6 @@
 # openstack-storage
 A node.js client library for interacting with Openstack Storage (Swift)
+
 _Copyright 2012, FeedHenry Ltd. Licensed under the
 MIT license, please see the LICENSE file.  All rights reserved._
 
@@ -25,7 +26,7 @@ MIT license, please see the LICENSE file.  All rights reserved._
     storageSwift.createContainer("EngTest", function (err, statusCode) {});
     
     // upload a local file test.png to a container called "EngTest" naming the remote file: file1.png 
-    storageSwift.addFile("EngTest", {remoteName:'file1.png', localFile:'./test.png'}, function(err, statusCode) {});
+    storageSwift.putFile("EngTest", {remoteName:'file1.png', localFile:'./test.png'}, function(err, statusCode) {});
     
     // delete a remote file: file1.png from a container called "EngTest"
     storageSwift.deleteFile("EngTest", 'file1.png', function (err, statusCode) {})
