@@ -1,6 +1,6 @@
 {
   "author": "Martin Murphy <martin.murphy@feedhenry.com>",
-  "name": "openstack-swift",
+  "name": "openstack-storage",
   "description": "Openstack Object Store (Swift) client",
   "version": "0.1.0-BUILD-NUMBER",
   "repository": {
@@ -14,13 +14,12 @@
     "request": "2.9.202"
   },
   "scripts": {
-    "test": "mocha --ui tdd --globals writeln --reporter spec"
+    "test": "mocha --ui tdd --globals writeln --reporter spec --timeout 10000"
   },
   "devDependencies": {
     "buffertools":"*",
     "mocha":"*"
   },      
-  "devDependencies": {},
   "optionalDependencies": {},
   "engines": {
     "node": "*"
