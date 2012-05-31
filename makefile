@@ -1,5 +1,5 @@
 
-PACKAGE = openstack-swift
+PACKAGE = openstack-storage
 
 # Get the Major/Release/Hotfix numbers from package.json.
 PKG_VER:=$(shell grep version package.json| sed s/\"//g| sed s/version://g| sed s/-BUILD-NUMBER//g| tr -d ' '| tr -d ',') 
