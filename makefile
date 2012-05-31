@@ -25,6 +25,7 @@ dist: npm_deps
 	mkdir -p $(DIST_DIR) $(OUTPUT_DIR)/$(RELEASE_DIR)
 	cp -r ./lib $(OUTPUT_DIR)/$(RELEASE_DIR)
 	cp ./package.json $(OUTPUT_DIR)/$(RELEASE_DIR)
+	sed -i -e s/BUILD-NUMBER/$(BUILD_NUMBER)/ $(OUTPUT_DIR)/$(RELEASE_DIR)/package.json
 	tar -czf $(DIST_DIR)/$(RELEASE_FILE) -C $(OUTPUT_DIR) $(RELEASE_DIR)
 
 npm_deps:
