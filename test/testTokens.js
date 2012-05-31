@@ -6,9 +6,17 @@ suite('authenticate', function(){
   var configFile;
   var config;
 
-  setup(function(){
+  setup(function(done){
     configFile = path.join(__dirname,'../config/testconfig.json');
-    config = require(configFile);
+    path.exists(configFile, function (configPresent) {
+      var err;
+      if (configPresent) {
+        config = require(configFile);
+      } else {
+        err = new Error('config file: ' + configFile + ' not found. Did you create one based on the sample provided?');
+      }
+      done(err);
+    });        
   });
 
   suite('getTokens', function(){

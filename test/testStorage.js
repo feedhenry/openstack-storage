@@ -10,13 +10,21 @@ suite('StorageTests', function(){
   var config;
   var authFn;
 
-  setup(function(){
+  setup(function(done){
     configFile = path.join(__dirname,'../config/testconfig.json');
-    config = require(configFile);
-    authFn = async.apply(authenticate.getTokens, config);
+    path.exists(configFile, function (configPresent) {
+      var err;
+      if (configPresent) {
+        config = require(configFile);
+        authFn = async.apply(authenticate.getTokens, config);
+      } else {
+        err = new Error('config file: ' + configFile + ' not found. Did you create one based on the sample provided?');
+      }
+      done(err);
+    });        
   });
 
-  suite('Create Container, then file, the delete both', function(){
+  suite('Create Container, then file, then delete both', function(){
     test('happy test', function(done){
       var storageSwift = new storage.OpenStackStorage (authFn, function(err, res, tokens) {
         assert(!err);
