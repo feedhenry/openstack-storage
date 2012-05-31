@@ -30,7 +30,7 @@ suite('StorageTests', function(){
         });
       },
       function (cb) {
-        fs.writeFile(testFileName, 'This is test data\nLine 2 of test data\n', cb);
+        fs.writeFile(testLocalFile, 'This is test data\nLine 2 of test data\n', cb);
       }
     ], function (err) {
       done(err);
