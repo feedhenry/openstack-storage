@@ -25,10 +25,8 @@ var config = require(configFile);
 
 var async = require('async');
 var storage = require('storage');
-var authenticate = require('authenticate');
 
-
-var authFn = async.apply(authenticate.getTokens, config);
+var authFn = async.apply(storage.authenticate, config);
 var storageSwift = new storage.OpenStackStorage (authFn, function(err, res, tokens) {
   console.log('Storage constructor - err: ', err, ', tokens: ', tokens);
   var containers = storageSwift.getContainers(function(err, containers) {
@@ -45,8 +43,8 @@ var storageSwift = new storage.OpenStackStorage (authFn, function(err, res, toke
         console.log('async complete - err: ', err);
         storageSwift.createContainer("EngTest", function (err, statusCode) {
           console.log('after createContainer - err: ', err, ", statusCode: ", statusCode);
-          storageSwift.addFile("EngTest", {remoteName:'file1.png', localFile:'./test.png'}, function(err, statusCode) {
-            console.log('after addFile - err: ', err, ", statusCode: ", statusCode);
+          storageSwift.putFile("EngTest", {remoteName:'file1.png', localFile:'./test.png'}, function(err, statusCode) {
+            console.log('after putFile - err: ', err, ", statusCode: ", statusCode);
             storageSwift.deleteFile("EngTest", 'file1.png', function (err, statusCode) {
               console.log('after deleteFile - err: ', err, ", statusCode: ", statusCode);
               storageSwift.deleteContainer("EngTest", function (err, statusCode) {

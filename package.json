@@ -9,6 +9,7 @@
     "type": "git",
     "url": "git://github.com/feedhenry/openstack-storage.git"
   },
+  "main": "lib/storage.js",
   "dependencies": {
     "optimist": "*",
     "winston": "*",

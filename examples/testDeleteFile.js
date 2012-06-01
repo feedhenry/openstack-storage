@@ -25,9 +25,8 @@ var config = require(configFile);
 
 var async = require('async');
 var storage = require('storage');
-var authenticate = require('authenticate');
 
-var authFn = async.apply(authenticate.getTokens, config);
+var authFn = async.apply(storage.authenticate, config);
 var storageSwift = new storage.OpenStackStorage (authFn, function(err, res, tokens) {
   console.log('Storage constructor - err: ', err, ', tokens: ', tokens);
   storageSwift.deleteFile("EngTest", 'file1.png', function (err, statusCode) {
