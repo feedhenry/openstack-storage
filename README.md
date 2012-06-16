@@ -12,7 +12,11 @@ MIT license, please see the LICENSE file.  All rights reserved._
     var storage = require('storage');
     var authenticate = require('authenticate');
     
-    var authFn = async.apply(authenticate.getTokens, config);
+    ## get an authentication function. config formats are described in lib/authenticate.js
+    ## use one of these:
+    var authFn = async.apply(authenticate.getTokensKeystone, config); // for keystone auth
+    var authFn = async.apply(authenticate.getTokensNative, config); // for native auth (swauth or tempauth)
+
     var storageSwift = new storage.OpenStackStorage (authFn, function(err, res, tokens) {
       console.log('Storage constructor - err: ', err, ', tokens: ', tokens);
       var containers = storageSwift.getContainers(function(err, containers) {
