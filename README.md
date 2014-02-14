@@ -1,4 +1,4 @@
-# openstack-storage
+# openstack-storage [![NPM version](https://badge.fury.io/js/openstack-storage.png)](http://badge.fury.io/js/openstack-storage)
 A node.js client library for interacting with Openstack Storage (Swift)
 
 _Copyright 2012, FeedHenry Ltd. Licensed under the
