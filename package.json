@@ -2,7 +2,12 @@
   "author": "Martin Murphy <martin.murphy@feedhenry.com>",
   "name": "openstack-storage",
   "description": "Openstack Storage (Swift) client for node.js",
-  "keywords": ["openstack", "storage", "client", "javascript"],
+  "keywords": [
+    "openstack",
+    "storage",
+    "client",
+    "javascript"
+  ],
   "version": "0.1.0-BUILD-NUMBER",
   "homepage": "https://github.com/feedhenry/openstack-storage",
   "repository": {
@@ -21,11 +26,12 @@
     "test": "mocha --ui tdd --globals writeln --reporter spec --timeout 10000"
   },
   "devDependencies": {
-    "buffertools":"*",
-    "mocha":"*"
-  },      
+    "buffertools": "*",
+    "mocha": "*"
+  },
   "optionalDependencies": {},
   "engines": {
     "node": "*"
-  }
+  },
+  "license": "Copyright (c) 2014 FeedHenry Ltd, All Rights Reserved."
 }
