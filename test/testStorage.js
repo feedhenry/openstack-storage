@@ -12,6 +12,8 @@ var testLocalFile2 = '/tmp/test2.txt';
 var testRemoteFileName = 'file1.txt';
 var fileDataToSend = 'This is test data\nLine 2 of test data\n';
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
 suite('StorageTests', function(){
   var configFile;
   var config;
@@ -21,7 +23,7 @@ suite('StorageTests', function(){
     configFile = path.join(__dirname,'../config/testconfig.json');
     async.series([
       function (cb) {
-        path.exists(configFile, function (configPresent) {
+        fs.exists(configFile, function (configPresent) {
           var err;
           if (configPresent) {
             config = require(configFile);
@@ -38,17 +40,18 @@ suite('StorageTests', function(){
     ], function (err) {
       done(err);
     });
-  });        
+  });
 
   suite('Create Container, then file, then delete both', function(){
     test('happy test', function(done){
       var storageSwift = new storage.OpenStackStorage (authFn, function(err, res, tokens) {
+          console.log(err);
         assert(!err);
         assert(tokens);
         async.waterfall(
           [
             function(cb) {
-              var containerName = "EngTest" + Date.now(); // use a container name that's unlikely to exist 
+              var containerName = "EngTest" + Date.now(); // use a container name that's unlikely to exist
               cb(null, containerName);
             },
             function(containerName, cb) {
@@ -130,4 +133,3 @@ suite('StorageTests', function(){
     });
   });
 });
-

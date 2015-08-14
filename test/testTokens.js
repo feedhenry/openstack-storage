@@ -1,4 +1,5 @@
 var path = require('path');
+var fs = require('fs');
 var assert = require('assert');
 var authenticate = require('../lib/authenticate');
 
@@ -8,7 +9,7 @@ suite('authenticate', function(){
 
   setup(function(done){
     configFile = path.join(__dirname,'../config/testconfig.json');
-    path.exists(configFile, function (configPresent) {
+    fs.exists(configFile, function (configPresent) {
       var err;
       if (configPresent) {
         config = require(configFile);
@@ -16,7 +17,7 @@ suite('authenticate', function(){
         err = new Error('config file: ' + configFile + ' not found. Did you create one based on the sample provided?');
       }
       done(err);
-    });        
+    });
   });
 
   suite('getTokens', function(){
@@ -32,5 +33,3 @@ suite('authenticate', function(){
     });
   });
 });
-
-
