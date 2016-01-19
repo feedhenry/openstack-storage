@@ -8,7 +8,7 @@
     "client",
     "javascript"
   ],
-  "version": "0.1.0-BUILD-NUMBER",
+  "version": "0.1.1",
   "homepage": "https://github.com/feedhenry/openstack-storage",
   "repository": {
     "type": "git",
