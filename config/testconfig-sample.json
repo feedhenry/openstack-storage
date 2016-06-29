@@ -4,8 +4,10 @@
       "username": "user1234",
       "password":"secretpassword"
     },
-    "tenantId": "your tennant id"
+    "tenantId": "your tennant id",
+    "_comment": "you may need a 'tenantName' property instead of 'tenantId'"
   },
   "host": "http://192.168.28.52:5000",
-  "storageName": "swift-service"
+  "storageName": "swift-service",
+  "_comment": "specify the property to use when resolving the 'storageUrl'. Default is 'publicUrl'"
 }
