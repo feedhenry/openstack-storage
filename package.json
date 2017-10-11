@@ -20,7 +20,7 @@
     "winston": "*",
     "dateformat": "*",
     "async": "0.1.18",
-    "request": "2.9.202"
+    "request": "2.68.0"
   },
   "scripts": {
     "test": "mocha --ui tdd --globals writeln --reporter spec --timeout 10000"
